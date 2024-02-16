@@ -20,6 +20,14 @@ const UserModel = {
     deleteUsers: async (id: string) => {
         const [result, metadata] = await connection.query(`DELETE FROM users WHERE id = ${id}`);
         return result;
+    },
+    loginUser : async (username: string, pass: string, email:string) => {
+
+        const [result, metadata] = await connection.query(`SELECT *
+        FROM users
+        WHERE email = '${email}' AND pass = '${pass}'`);
+        return result;
     }
+
 }
 export default UserModel;

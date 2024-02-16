@@ -49,6 +49,27 @@ const UserController = {
         await UserModel.deleteUsers(id);
 
 
+    },
+
+    loginUser: async (req: Request, res: Response) => {
+
+        const { username, pass, email } = req.body;
+        if (!username ||!pass || !email) {
+            res.status(400).json({ message: 'Faltan datos' });
+            return;
+        }
+        try {
+            const user = await UserModel.loginUser(username, pass, email);
+
+            if (!Array.isArray(user) || user.length === 0) {
+                res.status(404).json({ message: 'No se encontró el usuario' });
+                return
+            }
+            res.json(user);
+
+        } catch (error) {
+            console.log(error)
+        }
     }
 }
 
