@@ -1,0 +1,14 @@
+### Get all products
+GET http://localhost:3000/products
+
+### Get  product by id
+
+GET http://localhost:3000/products/6
+
+### Update product by id
+
+PUT http://localhost:3000/products/1
+
+### Delete product by id
+
+DELETE http://localhost:3000/products/1
