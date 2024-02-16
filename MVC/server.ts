@@ -6,12 +6,12 @@ import UserRouter from './routes/UserRouter'
 
 const app = express();
 const port = 3000;
-
+app.use(express.json())
 
 
 app.use("/products", ProductRouter);
 app.use("/users", UserRouter);
-app.use("/categories", CategoryRouter);
+app.use("/category", CategoryRouter);
 
 
 

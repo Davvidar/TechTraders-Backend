@@ -24,16 +24,30 @@ const ProductController = {
             console.log(error)
         }
     },
+    getProductByCategory: async (req: Request, res: Response) => {
+        try {
+            const name = req.params.name;
+            const product = await ProductModel.getProductByCategory(name);
+            if (!Array.isArray(product) || product.length === 0) {
+                res.status(404).json({ message: 'No se encontró' });
+                return
+            }
+            res.json(product);
+        } catch (error) {
+            console.log(error)
+        }
+    },
 
 
     addProduct: async (req: Request, res: Response) => {
-        const { name, description, price, stock } = req.body;
-        if (!name || !description || !price || !stock) {
+        console.log(req.body);
+        const { name, description, price, stock, category_id } = req.body;
+        if (!name || !description || !price || !stock ||!category_id) {
             res.status(400).json({ message: 'Faltan datos' });
             return;
         }
-        await ProductModel.addProduct(name, description, price, stock);
-
+        const result = await ProductModel.addProduct(name, description, price, stock, category_id);
+        res.send(result);
     },
 
 
@@ -44,8 +58,8 @@ const ProductController = {
             res.status(400).json({ message: 'Faltan datos' });
             return;
         }
-        await ProductModel.updateProduct(id, name, description, price, stock);
-
+        const result = await ProductModel.updateProduct(id, name, description, price, stock);
+        res.send(result);
     },
 
 

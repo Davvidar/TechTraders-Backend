@@ -34,7 +34,8 @@ const ProductController = {
             res.status(400).json({ message: 'Faltan datos' });
             return;
         }
-        await CategoryModel.addCategory(name);
+        const result = await CategoryModel.addCategory(name);
+        res.send(result);
      },
 
      
@@ -45,7 +46,8 @@ const ProductController = {
             res.status(400).json({ message: 'Faltan datos' });
             return;
         }
-        await CategoryModel.updateCategory(id, name);
+      const result =  await CategoryModel.updateCategory(id, name);
+        res.send(result);
      },
     deleteCategory: async (req: Request, res: Response) => { 
         try {
