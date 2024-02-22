@@ -11,11 +11,11 @@ const ProductModel = {
         return result;
     },
     getProductByCategory: async (name: string) => {
-        const [result, metadata] = await connection.query('SELECT p.id , p.product_name, p.product_description, p.price, p.stock, c.category_name FROM products p, category c WHERE p.category_id = c.id AND c.category_name = ?', [name]);
+        const [result, metadata] = await connection.query(`SELECT p.id , p.product_name, p.product_description, p.price, p.stock, p.product_image, c.category_name FROM products p, category c WHERE p.category_id = c.id AND c.category_name = '${name}'`);
         return result;
     },
 
-    addProduct: async (name: string, description: string, price: number, stock: number, category_id:number) => {
+    addProduct: async (name: string, description: string, price: number, stock: number, category_id:number, ) => {
         const [result, metadata] = await connection.query(`INSERT INTO products (product_name, product_description, price, stock, category_id)
         VALUES ('${name}', '${description}', ${price}, ${stock}, ${category_id})`)
         return result;
