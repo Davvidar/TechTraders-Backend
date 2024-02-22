@@ -9,8 +9,8 @@ const UserModel = {
         const [result, metadata] = await connection.query('SELECT * FROM users WHERE id =?', [id]);
         return result;
     },
-    addUser: async (uername: string, telephone: number, email: string, pass: string) => {
-        const [result, metadata] = await connection.query(`INSERT INTO users (username, telephone, email, password) VALUES ('${uername}', '${telephone}', '${email}', '${pass}')`);
+    addUser: async (username: string, telephone: number, email: string, pass: string) => {
+        const [result, metadata] = await connection.query(`INSERT INTO users (username, telephone, email, password) VALUES ('${username}', '${telephone}', '${email}', '${pass}')`);
         return result;
     },
     updateUsers: async (id: string, username: string, telephone: number, email: string, pass:string) =>{
