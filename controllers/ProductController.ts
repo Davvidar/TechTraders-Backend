@@ -27,12 +27,12 @@ const ProductController = {
     getProductByCategory: async (req: Request, res: Response) => {
         try {
             const name = req.params.name;
-            const product = await ProductModel.getProductByCategory(name);
-            if (!Array.isArray(product) || product.length === 0) {
-                res.status(404).json({ message: 'No se encontró' });
-                return
+            const products = await ProductModel.getProductByCategory(name); 
+            if (!Array.isArray(products) || products.length === 0) {
+                res.status(404).json({ message: 'No se encontraron productos para esta categoría' });
+                return;
             }
-            res.json(product);
+            res.json(products);
         } catch (error) {
             console.log(error)
         }
