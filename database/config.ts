@@ -1,10 +1,21 @@
-import {createPool} from 'mysql2/promise';
+
+import { createPool } from 'mysql2/promise';
+import dotenv from 'dotenv';
+
+
+dotenv.config();
 
 const CONFIG = {
-    host: 'localhost',
+    host: process.env.HOST,
     port: 3306,
-    user: 'root',
-    password: '1234',
-    database: 'db_marketplace'
+    user: process.env.USER,
+    password: process.env.PASSWORD,
+    database: process.env.DATABASE
 };
+
 export const connection = createPool(CONFIG);
+
+
+
+
+
