@@ -1,5 +1,4 @@
 import express, { query } from 'express';
-import { connection } from './database/config';
 import ProductRouter from './routes/ProductRouter'
 import CategoryRouter from './routes/CategoryRouter'
 import UserRouter from './routes/UserRouter'
